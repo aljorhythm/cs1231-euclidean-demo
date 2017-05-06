@@ -40,19 +40,21 @@ refactored_results = {}
 for resN in mod_res['results']:
 	refactored_results[resN['power']] = resN['mod']
 	print str(n) + ' ^ ' + str(resN['power']) + ' ' +  u'≡' + ' ' + str(resN['mod'])
-print
+print ''
 
 selected_indices = [1, 2, 4, 8, 32]
+index =  reduce(lambda x, y: x+y, selected_indices)
 
 print 'selected indices: '
 pp.pprint(selected_indices)
+print 'sum of indices = {0}'.format(index)
 print ''
 
 print 'results: '
-print pp.pprint(refactored_results)
+pp.pprint(refactored_results)
 print ''
 
 selected_Rs = { refactored_results[key] for key in refactored_results if key in selected_indices}
 multiplied_together = reduce(lambda x, y: x*y, selected_Rs)
 print 'multipled ' + str(multiplied_together)
-print '{0} mod {1} = '.format(n, modulo) + str( multiplied_together % 1537 )
+print '{0} ^ {1} mod {2} = '.format(n, index, modulo) + str( multiplied_together % 1537 )
